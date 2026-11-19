@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>CinTrack - Admin</title>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <header class="bg-gray-800 text-white p-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold">CinTrack · Admin</h1>
+        <a href="index.html" class="bg-red-500 hover:bg-red-600 hover:-translate-x-1.5 px-4 py-2 rounded-lg font-semibold">
+            ← Retour au catalogue
+        </a>
+    </header>
+
+    <main class="p-4">
+        <div id="admin-status" class="my-4"></div>
+
+        <table id="affichage_tab" class="border-2 border-black w-full bg-white">
+            <thead>
+                <tr>
+                    <th class="border-2 border-black p-4">Image</th>
+                    <th class="border-2 border-black p-4">Titre</th>
+                    <th class="border-2 border-black p-4">Type</th>
+                    <th class="border-2 border-black p-4">Année</th>
+                    <th class="border-2 border-black p-4">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="affichage_body"></tbody>
+        </table>
+    </main>
+
+    <footer class="p-4 text-center text-gray-500">Ichharat hhh</footer>
+    <script type="module" src="js/admin.js"></script>
+</body>
+</html>
