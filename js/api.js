@@ -1,16 +1,26 @@
-export async function chargeDonnees(url) {
-    try{
-        const response = await fetch(url);
-        if(!response.ok){
-            throw new Error("Fichier introuvable");
-        }
-        const data = await response.json();
-        return data;
-    }
-    catch(error){
-        console.error(error.message);
-    }
+export const BASE_URL = "https://6afaea62730c1d152f32bc04.mockapi.io/api/v1";
+
+export async function request(path, options = {}) {
+    const res = await fetch(BASE_URL + path, {
+        headers: { "Content-Type": "application/json" },
+        ...options,
+    });
+    if (!res.ok) throw new Error(`Erreur ${res.status}`);
+    return res.json();
 }
+
+export const getContents = () => request("/contents");
+
+export const createContent = (data) =>
+    request("/contents", { method: "POST", body: JSON.stringify(data) });
+
+export const updateContent = (id, data) =>
+    request(`/contents/${id}`, { method: "PUT", body: JSON.stringify(data) });
+
+export const deleteContent = (id) =>
+    request(`/contents/${id}`, { method: "DELETE" });
+
+export const getComments = () => request("/comments");
 
 const legal_links = ['https://1hd.one/movie/inception-06388/',
 'https://1hd.one/series/breaking-bad-18349/',

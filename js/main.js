@@ -1,13 +1,26 @@
-import {chargeDonnees} from './api.js';
+import {getContents} from './api.js';
 import { initRendering, handleFilter } from './filtrage.js'; 
 import { renderSidebarFavorites } from './favorites.js';
 
-const movies = await chargeDonnees("https://raw.githubusercontent.com/ouchad97/cinetrack-api/main/cinetrack-data.json")
-// console.log(movies);
+const affichage = document.getElementById("affichage");
+const pagination = document.getElementById("pagination");
 
-initRendering(movies);
+async function loadCatalogue() {
+    try {
+        const movies = await getContents();
+        initRendering(movies);
+        renderSidebarFavorites();
 
-renderSidebarFavorites();
+        const active = document.querySelector(".active-filter");
+        if (searchInput.value.trim() !== "" || (active && active.dataset.type !== "all")) {
+            handleFilter();
+        }
+    } catch (err) {
+        console.error(err.message);
+    }
+}
+
+loadCatalogue();
 
 const searchInput = document.getElementById("search");
 searchInput.addEventListener("input", handleFilter);
