@@ -1,3 +1,4 @@
+import { getComments, createComment } from './api.js';
 
 const modal = document.getElementById('movie-modal');
 const closeModalBtn = document.getElementById('close-modal');
@@ -13,10 +14,18 @@ const countries = document.getElementById('modal-countries');
 const description = document.getElementById('modal-description');
 const watchBtn = document.getElementById('modal-watch-btn');
 
+const commentsList = document.getElementById('comments-list');
+const commentForm = document.getElementById('comment-form');
+const commentAuthor = document.getElementById('comment-author');
+const commentText = document.getElementById('comment-text');
+const commentError = document.getElementById('comment-error');
+
+let currentItem = null;
+
 export function openModal(id, items) {
     const item = items.find(i => i.id === id);
     
-    if (!item) return;
+    currentItem = item;
     
     image.src = item.image;
     title.textContent = item.title;
@@ -37,13 +46,17 @@ export function openModal(id, items) {
     const index = items.findIndex(i => i.id === id);
     watchBtn.href = legal_links[index];
     
-    
+    commentAuthor.value = localStorage.getItem('cinetrack_pseudo') || '';
+    commentText.value = '';
+    commentError.classList.add('hidden');
     
     modal.classList.remove('hidden');
+    loadComments(item);
 }
 
 export function closeModal() {
     modal.classList.add('hidden');
+    currentItem = null;
 }
 
 closeModalBtn.addEventListener('click', closeModal);
@@ -54,15 +67,72 @@ modal.addEventListener('click', (e) => {
     }
 });
 
+async function loadComments(item) {
+    commentsList.innerHTML = '<p class="text-gray-400">Chargement...</p>';
+    try {
+        const all = await getComments();
+        const comments = all.filter(c => c.contentId == item.id);
+        renderComments(comments);
+    } catch (error) {
+        commentsList.innerHTML = '<p class="text-red-400">Erreur de chargement.</p>';
+    }
+}
 
+function renderComments(comments) {
+    if (comments.length === 0) {
+        commentsList.innerHTML = '<p class="text-gray-400">Aucun commentaire.</p>';
+        return;
+    }
+    commentsList.innerHTML = '';
+    comments.forEach(c => {
+        const div = document.createElement('div');
+        div.className = 'bg-gray-700 rounded p-2';
+        
+        const author = document.createElement('p');
+        author.className = 'font-semibold text-red-400';
+        author.textContent = c.author;
+        
+        const date = document.createElement('p');
+        date.className = 'text-xs text-gray-400';
+        date.textContent = new Date(c.createdAt).toLocaleDateString();
+        
+        const text = document.createElement('p');
+        text.textContent = c.text;
+        
+        div.append(author, date, text);
+        commentsList.append(div);
+    });
+}
 
-
-
-
-
-
-
-
+commentForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!currentItem) return;
+    
+    const author = commentAuthor.value.trim();
+    const text = commentText.value.trim();
+    
+    if (author === '' || text === '') {
+        commentError.textContent = 'Nom et texte sont obligatoires.';
+        commentError.classList.remove('hidden');
+        return;
+    }
+    commentError.classList.add('hidden');
+    
+    try {
+        await createComment({
+            contentId: String(currentItem.id),
+            author: author,
+            text: text,
+            createdAt: new Date().toISOString()
+        });
+        localStorage.setItem('cinetrack_pseudo', author);
+        commentText.value = '';
+        loadComments(currentItem);
+    } catch (error) {
+        commentError.textContent = 'Erreur : ' + error.message;
+        commentError.classList.remove('hidden');
+    }
+});
 
 const legal_links = ['https://1hd.one/movie/inception-06388/',
 'https://1hd.one/series/breaking-bad-18349/',

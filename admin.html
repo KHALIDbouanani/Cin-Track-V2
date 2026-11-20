@@ -10,10 +10,10 @@
     <header class="bg-gray-800 text-white p-4 flex flex-wrap gap-2 justify-between items-center">
         <h1 class="text-2xl font-bold">CinTrack · Admin</h1>
         <div class="flex gap-2">
-            <button id="btn-add" class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg font-semibold cursor-pointer">
+            <button id="btn-add" class="bg-green-500 hover:bg-green-600 over hover:scale-105 px-4 py-2 rounded-lg font-semibold cursor-pointer">
                 + Ajouter un titre
             </button>
-            <a href="index.html" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg font-semibold">
+            <a href="index.html" class="bg-red-500 hover:bg-red-600 hover:-translate-x-1 px-4 py-2 rounded-lg font-semibold">
                 ← Retour au catalogue
             </a>
         </div>
@@ -41,28 +41,28 @@
     <footer class="p-4 text-center text-gray-500">Ichharat hhh</footer>
 
     <div id="form-modal" class="fixed inset-0 bg-black/60 flex items-center justify-center hidden z-50 p-4">
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[92vh] overflow-y-auto">
+        <div class="bg-gray-950 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[92vh] overflow-y-auto">
             <div class="flex justify-between items-center p-4 border-b">
                 <h2 id="form-title" class="text-xl font-bold">Ajouter un titre</h2>
-                <button id="form-close" type="button" class="text-gray-500 hover:text-black text-3xl cursor-pointer">&times;</button>
+                <button id="form-close" type="button" class="text-gray-500 hover:text-white text-3xl cursor-pointer">&times;</button>
             </div>
 
-            <form id="content-form" class="p-4 space-y-4">
+            <form id="content-form" class="p-4 space-y-4 text-black">
 
                 <div>
-                    <label for="f-title" class="block font-semibold mb-1">Titre *</label>
+                    <label for="f-title" class="block text-white font-semibold mb-1">Titre *</label>
                     <input id="f-title" type="text" class="w-full border rounded-lg p-2">
                     <p id="error-title" class="error text-red-600 text-sm mt-1 hidden"></p>
                 </div>
 
                 <div>
-                    <label for="f-image" class="block font-semibold mb-1">URL de l'image *</label>
-                    <input id="f-image" type="text" placeholder="https://..." class="w-full border rounded-lg p-2">
+                    <label for="f-image" class="block text-white font-semibold mb-1">URL de l'image *</label>
+                    <input id="f-image" type="text" placeholder="https://..." class="w-full border rounded-lg p-2 placeholder-gray-700">
                     <p id="error-image" class="error text-red-600 text-sm mt-1 hidden"></p>
                 </div>
 
                 <div>
-                    <label for="f-type" class="block font-semibold mb-1">Type *</label>
+                    <label for="f-type" class="block text-white font-semibold mb-1">Type *</label>
                     <select id="f-type" class="w-full border rounded-lg p-2">
                         <option value="">— Choisir —</option>
                         <option value="movie">Film</option>
@@ -72,43 +72,43 @@
                 </div>
 
                 <div>
-                    <label for="f-releaseYear" class="block font-semibold mb-1">Année de sortie *</label>
+                    <label for="f-releaseYear" class="block text-white font-semibold mb-1">Année de sortie *</label>
                     <input id="f-releaseYear" type="number" class="w-full border rounded-lg p-2">
                     <p id="error-releaseYear" class="error text-red-600 text-sm mt-1 hidden"></p>
                 </div>
 
                 <div id="field-duration" class="hidden">
-                    <label for="f-duration" class="block font-semibold mb-1">Durée (minutes) *</label>
+                    <label for="f-duration" class="block text-white font-semibold mb-1">Durée (minutes) *</label>
                     <input id="f-duration" type="number" class="w-full border rounded-lg p-2">
                     <p id="error-duration" class="error text-red-600 text-sm mt-1 hidden"></p>
                 </div>
 
                 <div id="field-seasons" class="hidden">
-                    <label for="f-seasons" class="block font-semibold mb-1">Nombre de saisons *</label>
+                    <label for="f-seasons" class="block text-white font-semibold mb-1">Nombre de saisons *</label>
                     <input id="f-seasons" type="number" class="w-full border rounded-lg p-2">
                     <p id="error-seasons" class="error text-red-600 text-sm mt-1 hidden"></p>
                 </div>
 
                 <div>
-                    <label for="f-genres" class="block font-semibold mb-1">Genres * (séparés par des virgules)</label>
-                    <input id="f-genres" type="text" placeholder="Drame, Crime, Thriller" class="w-full border rounded-lg p-2">
+                    <label for="f-genres" class="block text-white font-semibold mb-1">Genres * (séparés par des virgules)</label>
+                    <input id="f-genres" type="text" placeholder="Drame, Crime, Thriller" class="w-full border rounded-lg p-2 placeholder-gray-700">
                     <p id="error-genres" class="error text-red-600 text-sm mt-1 hidden"></p>
                 </div>
 
                 <div>
-                    <label for="f-directors" class="block font-semibold mb-1">Réalisateurs * (séparés par des virgules)</label>
+                    <label for="f-directors" class="block text-white font-semibold mb-1">Réalisateurs * (séparés par des virgules)</label>
                     <input id="f-directors" type="text" class="w-full border rounded-lg p-2">
                     <p id="error-directors" class="error text-red-600 text-sm mt-1 hidden"></p>
                 </div>
 
                 <div>
-                    <label for="f-countries" class="block font-semibold mb-1">Pays de production * (séparés par des virgules)</label>
+                    <label for="f-countries" class="block text-white font-semibold mb-1">Pays de production * (séparés par des virgules)</label>
                     <input id="f-countries" type="text" class="w-full border rounded-lg p-2">
                     <p id="error-productionCountries" class="error text-red-600 text-sm mt-1 hidden"></p>
                 </div>
 
                 <div>
-                    <label for="f-description" class="block font-semibold mb-1">Description *</label>
+                    <label for="f-description" class="block text-white font-semibold mb-1">Description *</label>
                     <textarea id="f-description" rows="4" class="w-full border rounded-lg p-2"></textarea>
                     <p id="error-description" class="error text-red-600 text-sm mt-1 hidden"></p>
                 </div>

@@ -105,9 +105,25 @@
                     <strong class="text-gray-400">Description :</strong>
                     <p id="modal-description" class="text-gray-200 mt-1 leading-relaxed text-sm"></p>
                 </div>
-                <a id="modal-watch-btn" title="It's only illegal if you get caught." href="#" target="_blank" class="mt-auto bg-red-500 hover:bg-red-600 hover:scale-105 text-white font-bold py-3 px-6 rounded-lg text-center transition-colors inline-block w-full md:w-auto self-start">
-                    Watch now 😉
-                </a>
+                    <a id="modal-watch-btn" title="It's only illegal if you get caught." href="#" target="_blank" class="mt-auto bg-red-500 hover:bg-red-600 hover:scale-105 text-white font-bold py-3 px-6 rounded-lg text-center transition-colors inline-block w-full md:w-auto self-start">
+                        Watch now 😉
+                    </a>
+                <div class="border-t border-gray-600 pt-4">
+                    <h3 class="font-bold text-lg mb-2">Commentaires</h3>
+
+                    <div id="comments-list" class="space-y-2 max-h-48 overflow-y-auto text-sm">
+                        <p class="text-gray-400">Chargement...</p>
+                    </div>
+
+                    <form id="comment-form" class="mt-3 space-y-2">
+                        <input id="comment-author" type="text" placeholder="Votre nom" class="w-full bg-gray-700 rounded p-2 text-sm">
+                        <textarea id="comment-text" placeholder="Votre commentaire..." class="w-full bg-gray-700 rounded p-2 text-sm"></textarea>
+                        <p id="comment-error" class="text-red-400 text-xs hidden"></p>
+                        <button type="submit" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer">
+                            Publier
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

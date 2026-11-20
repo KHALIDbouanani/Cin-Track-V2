@@ -22,6 +22,9 @@ export const deleteContent = (id) =>
 
 export const getComments = () => request("/comments");
 
+export const createComment =(data) =>
+    request("/comments",{ method: "POST", body: JSON.stringify(data) });
+
 const legal_links = ['https://1hd.one/movie/inception-06388/',
 'https://1hd.one/series/breaking-bad-18349/',
 'https://1hd.one/movie/the-dark-knight-49515/',
