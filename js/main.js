@@ -1,22 +1,23 @@
 import {getContents} from './api.js';
 import { initRendering, handleFilter } from './filtrage.js'; 
 import { renderSidebarFavorites } from './favorites.js';
+import { showLoader, showError } from "./ui.js";
 
 const affichage = document.getElementById("affichage");
 const pagination = document.getElementById("pagination");
 
 async function loadCatalogue() {
     try {
+        showLoader(affichage, "Chargement du catalogue...");
+        pagination.innerHTML = "";
+
         const movies = await getContents();
         initRendering(movies);
         renderSidebarFavorites();
 
-        const active = document.querySelector(".active-filter");
-        if (searchInput.value.trim() !== "" || (active && active.dataset.type !== "all")) {
-            handleFilter();
-        }
+        handleFilter();
     } catch (err) {
-        console.error(err.message);
+        showError(affichage, `Impossible de charger le catalogue : ${err.message}`);
     }
 }
 
