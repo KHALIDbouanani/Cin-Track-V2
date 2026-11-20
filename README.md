@@ -116,20 +116,20 @@ https://6afaea62730c1d152f32bc04.mockapi.io/api/v1
 ## Structure du projet
 ```
 CinTrack/
-├── index.html # Page publique (catalogue)
-├── admin.html # Page d'administration
+├── index.html 
+├── admin.html
 ├── js/
-│ ├── main.js # Point d'entrée du catalogue + filtres + sidebar
-│ ├── admin.js # Logique de la page admin (CRUD + formulaire)
-│ ├── api.js # BASE_URL + request() + fonctions d'appels API
-│ ├── ui.js # Loader, messages d'erreur, helpers UI
-│ ├── validation.js # Fonctions de validation réutilisables
-│ ├── cardes.js # Génération des cartes du catalogue
-│ ├── favorites.js # Gestion des favoris (localStorage)
-│ ├── filtrage.js # Recherche, filtrage, pagination
-│ └── modal.js # Modal de détails + commentaires
+│ ├── main.js
+│ ├── admin.js
+│ ├── api.js
+│ ├── ui.js
+│ ├── validation.js
+│ ├── cardes.js
+│ ├── favorites.js
+│ ├── filtrage.js
+│ └── modal.js
 ├── src/
-│ └── output.css # CSS compilé (Tailwind)
+│ └── output.css
 ├── img/
 │ ├── logo.png
 │ ├── open_menu.png
